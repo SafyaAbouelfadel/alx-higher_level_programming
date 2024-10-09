@@ -74,7 +74,7 @@ def matrix_mul(m_a, m_b):
             b = 0
             for j in range(len(m_b)):
                 b += m_a[a][j] * m_b[j][k]
-            res[i].append(b)
+            res[a].append(b)
 
     return res
 
