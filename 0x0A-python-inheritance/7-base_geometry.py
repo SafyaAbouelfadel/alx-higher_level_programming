@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-'''Module for BaseGeometry class.'''
+'''
+Module for BaseGeometry classi
+'''
 
 
 class BaseGeometry:
@@ -7,7 +9,6 @@ class BaseGeometry:
     def area(self):
         '''Method to compute this area.'''
         raise Exception('area() is not implemented')
-
 
     def integer_validator(self, name, value):
         '''Method for validating the value.'''
