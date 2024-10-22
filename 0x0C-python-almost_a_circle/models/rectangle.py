@@ -81,7 +81,7 @@ class Rectangle(Base):
 
     def validate_integer(self, name, value, e=True):
         """Method for validating the value."""
-        if not isinstance(value, int): 
+        if not isinstance(value, int):
             raise TypeError("{} must be an integer".format(name))
         if e and (value < 0):
             raise ValueError("{} must be >= 0".format(name))
@@ -143,7 +143,8 @@ class Rectangle(Base):
                     else:
                         self.id = value
                 elif k in ("width", "height", "x", "y"):
-                    setattr(self, k, value) 
+                    setattr(self, k, value)
+
     def to_dictionary(self):
         """Returns dictionary representation of this class."""
         return {

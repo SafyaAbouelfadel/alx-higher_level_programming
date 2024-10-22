@@ -128,7 +128,7 @@ class Base:
                 ]
                 return [cls.create(**obj) for obj in list_dcts]
         except IOError:
-            return [] 
+            return []
 
     @staticmethod
     def draw(list_rectangles, list_squares) -> None:
