@@ -226,7 +226,7 @@ were given"
 
         try:
             os.remove("Rectangle.json")
-        except:
+        except Exception:
             pass
         Rectangle.save_to_file([])
         with open("Rectangle.json", "r") as file:
@@ -243,7 +243,7 @@ were given"
 
         try:
             os.remove("Square.json")
-        except:
+        except Exception:
             pass
         Square.save_to_file([])
         with open("Square.json", "r") as file:
@@ -286,6 +286,7 @@ were given"
         self.assertEqual(str(list_in[0]), str(list_out[0]))
         self.assertNotEqual(id(list_in[1]), id(list_out[1]))
         self.assertEqual(str(list_in[1]), str(list_out[1]))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -111,7 +111,7 @@ class Rectangle(Base):
             strg += "/{}".format(self.height)
         return strg
 
-    def __update(self, id=None, width=None, height=None, x=None, y=None):
+    def update(self, *args, **kwargs) -> None:
         """Internal method that updates instance attribute.
 
         Args:

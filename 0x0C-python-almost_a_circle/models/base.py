@@ -132,35 +132,35 @@ class Base:
 
     @staticmethod
     def draw(list_rectangles, list_squares) -> None:
-    """Draw rectangles and squares using the turtle graphics library.
+        """Draw rectangles and squares using the turtle graphics library.
 
-    Args:
-        list_rectangles (list): List of rectangles to draw.
-        list_squares (list): List of squares to draw.
-    """
-    turt = turtle.Turtle()
-    turt.screen.bgcolor("#a6a6a6")
-    turt.pensize(2)
-    turt.shape("turtle")
+        Args:
+            list_rectangles (list): List of rectangles to draw.
+            list_squares (list): List of squares to draw.
+        """
+        turt = turtle.Turtle()
+        turt.screen.bgcolor("#a6a6a6")
+        turt.pensize(2)
+        turt.shape("turtle")
 
-    turt.color("#af0000")
-    for rect in list_rectangles:
-        turt.penup()
-        turt.goto(rect.x, rect.y)
-        turt.pendown()
-        for _ in range(2):
-            turt.forward(rect.width)
-            turt.left(90)
-            turt.forward(rect.height)
-            turt.left(90)
+        turt.color("#af0000")
+        for rect in list_rectangles:
+            turt.penup()
+            turt.goto(rect.x, rect.y)
+            turt.pendown()
+            for _ in range(2):
+                turt.forward(rect.width)
+                turt.left(90)
+                turt.forward(rect.height)
+                turt.left(90)
 
-    turt.color("#0d47cc")
-    for sqr in list_squares:
-        turt.penup()
-        turt.goto(sqr.x, sqr.y)
-        turt.pendown()
-        for _ in range(4):
-            turt.forward(sqr.width)
-            turt.left(90)
+        turt.color("#0d47cc")
+        for sqr in list_squares:
+            turt.penup()
+            turt.goto(sqr.x, sqr.y)
+            turt.pendown()
+            for _ in range(4):
+                turt.forward(sqr.width)
+                turt.left(90)
 
-    turtle.exitonclick()
+        turtle.exitonclick()
