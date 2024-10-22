@@ -56,7 +56,7 @@ class Rectangle:
 
     def validate_integer(self, name, value, e=True):
         '''Method for validating the value.'''
-        if type(value) != int:
+        if not isinstance(value, int): 
             raise TypeError("{} must be an integer".format(name))
         if e and value < 0:
             raise ValueError("{} must be >= 0".format(name))
