@@ -4,7 +4,7 @@ from json import dumps, loads
 import csv
 
 
-Class Base:
+class Base:
     '''A representation of the base of our OOP hierarchy.'''
     __nb_objects = 0
     def __init__(self, id=None):

@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 '''Module for Rectangle class.'''
-from models/base import Base
+from models.base import Base
 
 
-Class Rectangle:
+class Rectangle:
     '''A Rectangle class.'''
 
     def __init__(self, width, height, x=0, y=0, id=None):
         '''Constructor'''
-        super().__init__(id)
+        Base.__init__(self, id) 
         self.width = width
         self.height = height
         self.x = x
@@ -54,14 +54,14 @@ Class Rectangle:
         self.validate_integer("y", value)
         self.__y = value
 
-    def validate_integer(self, name, value, e=True)
+    def validate_integer(self, name, value, e=True):
         '''Method for validating the value.'''
-    if type(value) is not int:
-        raise TypeError("{} must be an integer".format(name))
-    if e and value < 0:
-        raise ValueError("{} must be >= 0".format(name))
-    elif not e and value =< 0:
-        raise ValueError("{} must be > 0".format(name))
+        if type(value) != int:
+            raise TypeError("{} must be an integer".format(name))
+        if e and value < 0:
+            raise ValueError("{} must be >= 0".format(name))
+        elif not e and value <= 0:
+            raise ValueError("{} must be > 0".format(name))
 
     def area(self):
         '''Computes area of this rectangle.'''
