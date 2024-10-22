@@ -1,14 +1,23 @@
 #!/usr/bin/python3
-'''Module for Rectangle class.'''
+"""Module for Rectangle class."""
 from models.base import Base
 
 
-class Rectangle:
-    '''A Rectangle class.'''
+class Rectangle(Base):
+    """A Rectangle class"""
 
     def __init__(self, width, height, x=0, y=0, id=None):
-        '''Constructor'''
-        Base.__init__(self, id)
+        """Constructor
+
+           Args:
+               width (int): The width of the rectangle.
+               height (int): The height of the rectangle.
+               x (int, optional): The x-coordinate of the rectangle.
+               y (int, optional): The y-coordinate of the rectangle.
+               id (int, optional): The identifier for the instance.
+                   If None, a unique identifier will be assigned.
+        """
+        super().__init__(id)
         self.width = width
         self.height = height
         self.x = x
@@ -16,7 +25,15 @@ class Rectangle:
 
     @property
     def width(self):
-        '''Width of this rectangle.'''
+        """Width of this rectangle
+
+        Args:
+            value (int): The width value to set.
+
+        Raises:
+            TypeError: If the value is not an integer.
+            ValueError: If the value is less than or equal to 0.
+        """
         return self.__width
 
     @width.setter
@@ -26,7 +43,15 @@ class Rectangle:
 
     @property
     def height(self):
-        '''Height of this rectangle.'''
+        """Height of this rectangle.
+
+        Args:
+            value (int): The height value to set.
+
+        Raises:
+            TypeError: If the value is not an integer.
+            ValueError: If the value is less than or equal to 0.
+        """
         return self.__height
 
     @height.setter
@@ -36,7 +61,7 @@ class Rectangle:
 
     @property
     def x(self):
-        '''x of this rectangle.'''
+        """x of this rectangle."""
         return self.__x
 
     @x.setter
@@ -46,7 +71,7 @@ class Rectangle:
 
     @property
     def y(self):
-        '''y of this rectangle.'''
+        """y of this rectangle."""
         return self.__y
 
     @y.setter
@@ -55,52 +80,76 @@ class Rectangle:
         self.__y = value
 
     def validate_integer(self, name, value, e=True):
-        '''Method for validating the value.'''
+        """Method for validating the value."""
         if not isinstance(value, int): 
             raise TypeError("{} must be an integer".format(name))
-        if e and value < 0:
+        if e and (value < 0):
             raise ValueError("{} must be >= 0".format(name))
-        elif not e and value <= 0:
+        elif not e and (value <= 0):
             raise ValueError("{} must be > 0".format(name))
 
     def area(self):
-        '''Computes area of this rectangle.'''
+        """Computes area of this rectangle."""
         return self.width * self.height
 
     def display(self):
-        '''Prints string representation of this rectangle.'''
+        """Prints string representation of this rectangle."""
         t = "\n" * self.y + \
             (" " * self.x + "#" * self.width + "\n") * self.height
         print(t, end="")
 
     def __str__(self):
-        '''Returns string info about this rectangle.'''
-        return '[{}] ({}) {}/{} - {}/{}'.\
-            format(type(self).__name__, self.id, self.x, self.y, self.width,
-                   self.height)
+        """Returns string info about this rectangle."""
+        strg = "[{}] ({}) {}/{} - {}".format(
+            str(self.__class__.__name__),
+            self.id,
+            self.x,
+            self.y,
+            self.width,
+        )
+        if type(self) == Rectangle:
+            strg += "/{}".format(self.height)
+        return strg
 
     def __update(self, id=None, width=None, height=None, x=None, y=None):
-        '''Internal method that updates instance attributes via */**args.'''
-        if id is not None:
-            self.id = id
-        if width is not None:
-            self.width = width
-        if height is not None:
-            self.height = height
-        if x is not None:
-            self.x = x
-        if y is not None:
-            self.y = y
+        """Internal method that updates instance attribute.
 
-    def update(self, *args, **kwargs):
-        '''Updates instance attributes via no-keyword & keyword args.'''
-        # print(args, kwargs)
-        if args:
-            self.__update(*args)
-        elif kwargs:
-            self.__update(**kwargs)
-
+        Args:
+            *args: Variable length argument list.
+            **kwargs: Arbitrary keyword arguments.
+        """
+        if args and len(args) != 0:
+            c = 0
+            for arg in args:
+                if c == 0:
+                    if arg is None:
+                        self.__init__(self.width, self.height, self.x, self.y)
+                    else:
+                        self.id = arg
+                elif c == 1:
+                    self.width = arg
+                elif c == 2:
+                    self.height = arg
+                elif c == 3:
+                    self.x = arg
+                elif c == 4:
+                    self.y = arg
+                c += 1
+        elif kwargs and len(kwargs) != 0:
+            for k, value in kwargs.items():
+                if k == "id":
+                    if value is None:
+                        self.__init__(self.width, self.height, self.x, self.y)
+                    else:
+                        self.id = value
+                elif k in ("width", "height", "x", "y"):
+                    setattr(self, k, value) 
     def to_dictionary(self):
-        '''Returns dictionary representation of this class.'''
-        return {"id": self.id, "width": self.__width, "height": self.__height,
-                "x": self.__x, "y": self.__y}
+        """Returns dictionary representation of this class."""
+        return {
+            "id": self.id,
+            "width": self.width,
+            "height": self.height,
+            "x": self.x,
+            "y": self.y
+        }
