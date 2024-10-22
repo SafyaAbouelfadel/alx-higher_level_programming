@@ -25,24 +25,21 @@ class Rectangle(Base):
 
     @property
     def width(self):
-        """Width of this rectangle
-
-        Args:
-            value (int): The width value to set.
-
-        Raises:
-            TypeError: If the value is not an integer.
-            ValueError: If the value is less than or equal to 0.
-        """
+        """Width of this rectangle"""
         return self.__width
 
     @width.setter
-    def width(self, value):
+    def width(self, value) -> None:
+        """Set the width of the rectangle.
+
+        Args:
+            value (int): The width value to set.
+        """
         self.validate_integer("width", value, False)
         self.__width = value
 
     @property
-    def height(self):
+    def height(self) -> int:
         """Height of this rectangle.
 
         Args:
@@ -55,7 +52,12 @@ class Rectangle(Base):
         return self.__height
 
     @height.setter
-    def height(self, value):
+    def height(self, value) -> None:
+        """Set the height of the rectangle.
+
+        Args:
+            value (int): The height value to set.
+        """
         self.validate_integer("height", value, False)
         self.__height = value
 
@@ -66,6 +68,11 @@ class Rectangle(Base):
 
     @x.setter
     def x(self, value):
+        """Set the x-coordinate of the rectangle.
+
+        Args:
+            value (int): The x-coordinate value to set.
+        """
         self.validate_integer("x", value)
         self.__x = value
 
@@ -75,7 +82,12 @@ class Rectangle(Base):
         return self.__y
 
     @y.setter
-    def y(self, value):
+    def y(self, value) -> None:
+        """Set the y-coordinate of the rectangle.
+
+        Args:
+            value (int): The y-coordinate value to set.
+        """
         self.validate_integer("y", value)
         self.__y = value
 
@@ -92,7 +104,7 @@ class Rectangle(Base):
         """Computes area of this rectangle."""
         return self.width * self.height
 
-    def display(self):
+    def display(self) -> None:
         """Prints string representation of this rectangle."""
         t = "\n" * self.y + \
             (" " * self.x + "#" * self.width + "\n") * self.height
