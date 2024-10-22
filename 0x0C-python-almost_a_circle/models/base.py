@@ -7,6 +7,7 @@ import csv
 class Base:
     '''A representation of the base of our OOP hierarchy.'''
     __nb_objects = 0
+
     def __init__(self, id=None):
         '''Constructor.'''
         if id is not None:
@@ -61,7 +62,7 @@ class Base:
         if not path.isfile(file):
             return []
         with open(file, "r", encoding="utf-8") as fl:
-            return [cls.create(**dct) for dct in cls.from_json_string(fl.read())]
+            return [cls.create(**dc) for dc in cls.from_json_string(fl.read())]
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
@@ -93,10 +94,10 @@ class Base:
                 row = [int(rw) for rw in row]
                 if cls is Rectangle:
                     dct = {"id": row[0], "width": row[1], "height": row[2],
-                         "x": row[3], "y": row[4]}
+                           "x": row[3], "y": row[4]}
                 else:
                     dct = {"id": row[0], "size": row[1],
-                         "x": row[2], "y": row[3]}
+                           "x": row[2], "y": row[3]}
                 rect.append(cls.create(**dct))
         return rect
 
